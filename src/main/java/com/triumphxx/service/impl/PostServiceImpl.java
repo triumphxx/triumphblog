@@ -35,7 +35,7 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
                 .eq(categoryId != null, "category_id", categoryId)
                 .eq(userId != null, "user_id", userId)
                 .eq(level == 0, "level", 0)
-                .gt(level > 0, "lecel", 0)
+                .gt(level > 0, "level", 0)
                 .orderByDesc(order != null, order);
         return postMapper.selectPosts(page, wrapper);
     }
