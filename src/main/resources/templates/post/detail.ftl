@@ -1,7 +1,7 @@
-<#include "../include/macro.ftl"/>
+<#include "/include/macro.ftl"/>
 
 <@layout "博客分类">
-  <#include "../include/header-panel.ftl"/>
+  <#include "/include/header-panel.ftl"/>
   <div class="layui-container">
     <div class="layui-row layui-col-space15">
       <div class="layui-col-md8 content detail">
@@ -181,7 +181,7 @@
           </div>
         </div>
       </div>
-      <#include "../include/right.ftl"/>
+      <#include "/include/right.ftl"/>
     </div>
   </div>
 </@layout>

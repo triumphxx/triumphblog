@@ -9,6 +9,7 @@
         <meta name="description" content="Fly社区是模块化前端UI框架Layui的官网社区，致力于为web开发提供强劲动力">
         <link rel="stylesheet" href="/res/layui/css/layui.css">
         <link rel="stylesheet" href="/res/css/global.css">
+        <script src="/res/layui/layui.js"></script>
     </head>
     <body>
 
@@ -18,7 +19,7 @@
 
     <#include "/include/footer.ftl" />
 
-    <script src="/res/layui/layui.js"></script>
+
     <script>
         layui.cache.page = '';
         layui.cache.user = {
