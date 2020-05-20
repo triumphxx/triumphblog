@@ -13,6 +13,7 @@
     </head>
     <body>
 
+    <#include "/include/common.ftl"/>
     <#include "/include/header.ftl" />
 
     <#nested >

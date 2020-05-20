@@ -17,12 +17,8 @@ public class IndexController extends BaseController {
     @RequestMapping({"","/","index"})
     public String index(){
 
-        int pn = ServletRequestUtils.getIntParameter(req,"pn",1);
-        int size = ServletRequestUtils.getIntParameter(req,"size",2);
-
-        Page page = new Page(pn,size);
         // 分页信息 分类信息  用户信息 置顶 精华 排序
-        IPage results = postService.paging(page,null,null,null,null,"created");
+        IPage results = postService.paging(getPage(),null,null,null,null,"created");
 
         req.setAttribute("pageData", results);
         req.setAttribute("currentCategoryId", 0);
