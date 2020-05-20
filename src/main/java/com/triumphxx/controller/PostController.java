@@ -1,7 +1,11 @@
 package com.triumphxx.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.triumphxx.entity.Post;
+import com.triumphxx.vo.PostVo;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -29,6 +33,13 @@ public class PostController extends BaseController {
 
     @GetMapping("/detail/{id:\\d*}")
     public String detail(@PathVariable(name = "id") Long id){
+
+        PostVo postVo = postService.selectOnePost(new QueryWrapper<Post>()
+                .eq("p.id", id));
+        Assert.notNull(postVo,"文章已经被删除");
+
+
+        req.setAttribute("post", postVo);
         return "post/detail";
     }
 }

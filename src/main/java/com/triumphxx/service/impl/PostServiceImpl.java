@@ -7,6 +7,7 @@ import com.triumphxx.entity.Post;
 import com.triumphxx.mapper.PostMapper;
 import com.triumphxx.service.PostService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.triumphxx.vo.PostVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,5 +39,10 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
                 .gt(level > 0, "level", 0)
                 .orderByDesc(order != null, order);
         return postMapper.selectPosts(page, wrapper);
+    }
+
+    @Override
+    public PostVo selectOnePost(QueryWrapper<Post> wrapper) {
+        return postMapper.selectOnePost(wrapper);
     }
 }
