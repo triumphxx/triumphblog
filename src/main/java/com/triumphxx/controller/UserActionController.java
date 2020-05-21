@@ -2,9 +2,7 @@ package com.triumphxx.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
-import com.triumphxx.controller.BaseController;
 
 /**
  * <p>

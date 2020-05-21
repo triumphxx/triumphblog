@@ -1,6 +1,5 @@
 package com.triumphxx.config;
 
-import com.jagregory.shiro.freemarker.ShiroTags;
 import com.triumphxx.template.TimeAgoMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

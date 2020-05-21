@@ -34,7 +34,7 @@
               </a>
               <span>2017-11-30</span>
             </div>
-            <div class="detail-hits" id="lay_jieadmin" data-id="123">
+            <div class="detail-hits" id="lay_jieadmin" data-id="${post.id}">
               <span class="layui-btn layui-btn-xs jie-admin" type="edit"><a href="add.html">编辑此贴</a></span>
             </div>
           </div>

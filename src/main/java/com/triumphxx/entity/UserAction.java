@@ -1,6 +1,5 @@
 package com.triumphxx.entity;
 
-import com.triumphxx.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;

@@ -1,7 +1,7 @@
 package com.triumphxx.service;
 
-import com.triumphxx.entity.UserCollection;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.triumphxx.entity.UserCollection;
 
 /**
  * <p>
