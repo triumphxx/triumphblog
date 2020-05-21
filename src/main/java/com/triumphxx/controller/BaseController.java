@@ -1,6 +1,7 @@
 package com.triumphxx.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.triumphxx.service.CommentService;
 import com.triumphxx.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -19,6 +20,9 @@ public class BaseController {
 
     @Autowired
     PostService postService;
+
+    @Autowired
+    CommentService commentService;
 
     public Page getPage() {
         int pn = ServletRequestUtils.getIntParameter(req, "pn", 1);
