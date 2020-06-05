@@ -1,7 +1,7 @@
 package com.triumphxx.mapper;
 
-import com.triumphxx.entity.UserCollection;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.triumphxx.entity.UserCollection;
 
 /**
  * <p>

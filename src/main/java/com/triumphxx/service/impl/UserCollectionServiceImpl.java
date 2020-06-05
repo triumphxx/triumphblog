@@ -1,9 +1,9 @@
 package com.triumphxx.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.triumphxx.entity.UserCollection;
 import com.triumphxx.mapper.UserCollectionMapper;
 import com.triumphxx.service.UserCollectionService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

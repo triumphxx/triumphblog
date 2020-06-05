@@ -1,9 +1,9 @@
 package com.triumphxx.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.triumphxx.entity.Category;
 import com.triumphxx.mapper.CategoryMapper;
 import com.triumphxx.service.CategoryService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

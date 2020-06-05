@@ -1,7 +1,10 @@
 package com.triumphxx.config;
 
+<<<<<<< HEAD
 import com.triumphxx.template.HotsTemplate;
 import com.triumphxx.template.PostsTemplate;
+=======
+>>>>>>> 58c25f59444c895fa084ca1d1d2735ffbb841a08
 import com.triumphxx.template.TimeAgoMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
