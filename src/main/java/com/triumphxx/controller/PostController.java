@@ -8,6 +8,7 @@ import com.triumphxx.vo.CommentVo;
 import com.triumphxx.vo.PostVo;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -28,12 +29,15 @@ public class PostController extends BaseController {
      */
     @GetMapping("/category/{id:\\d*}")
     public String category(@PathVariable(name = "id") Long id){
+        int pn = ServletRequestUtils.getIntParameter(req, "pn", 1);
+
         //控制前端点击导航栏的背景颜色
         req.setAttribute("currentCategoryId", id);
+        req.setAttribute("pn", pn);
         return "post/category";
     }
 
-    @GetMapping("/detail/{id:\\d*}")
+    @GetMapping("/post/{id:\\d*}")
     public String detail(@PathVariable(name = "id") Long id){
 
         PostVo postVo = postService.selectOnePost(new QueryWrapper<Post>()
@@ -45,5 +49,10 @@ public class PostController extends BaseController {
         req.setAttribute("post", postVo);
         req.setAttribute("pageData", comments);
         return "post/detail";
+    }
+
+    @GetMapping("/post/edit")
+    public String edit(){
+        return "post/edit";
     }
 }

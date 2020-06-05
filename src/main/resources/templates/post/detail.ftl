@@ -30,12 +30,11 @@
             <div class="fly-detail-user">
               <a href="/user/${post.authorId}" class="fly-link">
                 <cite>${post.authorName}</cite>
-                <i class="iconfont icon-renzheng" title="认证信息：{{ rows.user.approve }}"></i>
               </a>
-              <span>2017-11-30</span>
+              <span>${timeAgo(post.created)}</span>
             </div>
-            <div class="detail-hits" id="lay_jieadmin" data-id="123">
-              <span class="layui-btn layui-btn-xs jie-admin" type="edit"><a href="add.html">编辑此贴</a></span>
+            <div class="detail-hits" id="lay_jieadmin" data-id=${post.id}>
+              <span class="layui-btn layui-btn-xs jie-admin" type="edit"><a href="/post/edit?id=${post.id}">编辑此贴</a></span>
             </div>
           </div>
           <div class="detail-body photos">
