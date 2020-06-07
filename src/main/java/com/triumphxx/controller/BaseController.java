@@ -1,6 +1,7 @@
 package com.triumphxx.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.triumphxx.service.CategoryService;
 import com.triumphxx.service.CommentService;
 import com.triumphxx.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  * @desc:所有controller的父类
  **/
 public class BaseController {
+
     @Autowired
     HttpServletRequest req;
 
@@ -23,6 +25,9 @@ public class BaseController {
 
     @Autowired
     CommentService commentService;
+
+    @Autowired
+    CategoryService categoryService;
 
     public Page getPage() {
         int pn = ServletRequestUtils.getIntParameter(req, "pn", 1);
