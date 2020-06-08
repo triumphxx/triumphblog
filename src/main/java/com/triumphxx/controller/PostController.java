@@ -1,6 +1,7 @@
 package com.triumphxx.controller;
 
 
+import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -82,6 +84,26 @@ public class PostController extends BaseController {
         ValidationUtil.ValidResult validResult = ValidationUtil.validateBean(post);
         if(validResult.hasErrors()) {
             return Result.fail(validResult.getErrors());
+        }
+        PostVo postVo = postService.selectOnePost(new QueryWrapper<Post>()
+                .eq("p.id", post.getId()));
+        //如果不为空则进行更新，进行添加
+        if(postVo!=null){
+            postService.saveOrUpdate(post);
+        }else{
+            Post p = new Post();
+            Long id = Long.getLong(UUID.randomUUID().toString());
+            p.setId(id);
+            p.setCategoryId(post.getCategoryId());
+            p.setTitle(post.getTitle());
+            p.setContent(post.getContent());
+            p.setCommentCount(0);
+            p.setLevel(0);
+            p.setRecommend(true);
+            p.setViewCount(0);
+            p.setCreated(new Date());
+            p.setModified(new Date());
+            postService.saveOrUpdate(p);
         }
         return Result.success().action("/post/" + post.getId());
     }
