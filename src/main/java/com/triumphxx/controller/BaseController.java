@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.triumphxx.service.CategoryService;
 import com.triumphxx.service.CommentService;
 import com.triumphxx.service.PostService;
+import com.triumphxx.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.ServletRequestUtils;
 
@@ -28,6 +29,9 @@ public class BaseController {
 
     @Autowired
     CategoryService categoryService;
+
+    @Autowired
+    UserService userService;
 
     public Page getPage() {
         int pn = ServletRequestUtils.getIntParameter(req, "pn", 1);

@@ -16,22 +16,13 @@
               <div class="layui-form-item">
                 <label for="L_email" class="layui-form-label">邮箱</label>
                 <div class="layui-input-inline">
-                  <input type="text" id="L_email" name="email" required lay-verify="required" autocomplete="off" class="layui-input">
+                  <input type="text" id="L_email" name="email"   autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label for="L_pass" class="layui-form-label">密码</label>
                 <div class="layui-input-inline">
-                  <input type="password" id="L_pass" name="pass" required lay-verify="required" autocomplete="off" class="layui-input">
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <label for="L_vercode" class="layui-form-label">人类验证</label>
-                <div class="layui-input-inline">
-                  <input type="text" id="L_vercode" name="vercode" required lay-verify="required" placeholder="请回答后面的问题" autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-form-mid">
-                  <span style="color: #c00;">{{d.vercode}}</span>
+                  <input type="password" id="L_pass" name="password"   autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
@@ -39,11 +30,6 @@
                 <span style="padding-left:20px;">
                   <a href="forget.html">忘记密码？</a>
                 </span>
-              </div>
-              <div class="layui-form-item fly-form-app">
-                <span>或者使用社交账号登入</span>
-                <a href="" onclick="layer.msg('正在通过QQ登入', {icon:16, shade: 0.1, time:0})" class="iconfont icon-qq" title="QQ登入"></a>
-                <a href="" onclick="layer.msg('正在通过微博登入', {icon:16, shade: 0.1, time:0})" class="iconfont icon-weibo" title="微博登入"></a>
               </div>
             </form>
           </div>
@@ -55,5 +41,6 @@
 
 <script>
 layui.cache.page = 'user';
+
 </script>
 </@layout>

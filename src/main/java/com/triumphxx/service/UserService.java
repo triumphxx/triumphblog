@@ -1,6 +1,7 @@
 package com.triumphxx.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.triumphxx.common.lang.Result;
 import com.triumphxx.entity.User;
 
 /**
@@ -13,4 +14,5 @@ import com.triumphxx.entity.User;
  */
 public interface UserService extends IService<User> {
 
+    Result register(User user);
 }
