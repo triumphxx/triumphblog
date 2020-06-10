@@ -8,7 +8,7 @@
     <div class="layui-form layui-form-pane">
       <div class="layui-tab layui-tab-brief" lay-filter="user">
         <ul class="layui-tab-title">
-          <li class="layui-this"> 编辑帖子<!-- 发表新帖 --></li>
+          <li class="layui-this"><#if !post??>发表新帖<#else>编辑帖子</#if></li>
         </ul>
         <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
           <div class="layui-tab-item layui-show">

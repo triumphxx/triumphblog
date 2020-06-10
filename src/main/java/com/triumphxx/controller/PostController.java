@@ -1,18 +1,16 @@
 package com.triumphxx.controller;
 
 
-import cn.hutool.core.lang.UUID;
-import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.triumphxx.common.lang.Result;
-import com.triumphxx.entity.Category;
 import com.triumphxx.entity.Post;
 import com.triumphxx.util.ValidationUtil;
 import com.triumphxx.vo.CommentVo;
 import com.triumphxx.vo.PostVo;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -64,17 +61,15 @@ public class PostController extends BaseController {
         @GetMapping("/post/edit")
         public String edit(){
             //获取文章的id
-            String postId = req.getParameter("id");
-            //根据postId查询文章是否存在
-           if (StrUtil.isNotEmpty(postId)){
-               Post post = postService.getById(postId);
-               Assert.isTrue(post!=null,"该帖子已被删除");
-               req.setAttribute("post",post);
-           }
-            List<Category> categories = categoryService.list();
-            req.setAttribute("categories",categories);
-
-            return "post/edit";
+            String id = req.getParameter("id");
+            if(!StringUtils.isEmpty(id)) {
+                Post post = postService.getById(id);
+                Assert.isTrue(post != null, "改帖子已被删除");
+                Assert.isTrue(post.getUserId().longValue() == getProfileId().longValue(), "没权限操作此文章");
+                req.setAttribute("post", post);
+            }
+            req.setAttribute("categories", categoryService.list());
+            return "/post/edit";
         }
 
 
@@ -85,25 +80,29 @@ public class PostController extends BaseController {
         if(validResult.hasErrors()) {
             return Result.fail(validResult.getErrors());
         }
-        PostVo postVo = postService.selectOnePost(new QueryWrapper<Post>()
-                .eq("p.id", post.getId()));
-        //如果不为空则进行更新，进行添加
-        if(postVo!=null){
-            postService.saveOrUpdate(post);
-        }else{
-            Post p = new Post();
-            Long id = Long.getLong(UUID.randomUUID().toString());
-            p.setId(id);
-            p.setCategoryId(post.getCategoryId());
-            p.setTitle(post.getTitle());
-            p.setContent(post.getContent());
-            p.setCommentCount(0);
-            p.setLevel(0);
-            p.setRecommend(true);
-            p.setViewCount(0);
-            p.setCreated(new Date());
-            p.setModified(new Date());
-            postService.saveOrUpdate(p);
+
+        if(post.getId() == null) {
+            post.setUserId(getProfileId());
+
+            post.setModified(new Date());
+            post.setCreated(new Date());
+            post.setCommentCount(0);
+            post.setEditMode(null);
+            post.setLevel(0);
+            post.setRecommend(false);
+            post.setViewCount(0);
+            post.setVoteDown(0);
+            post.setVoteUp(0);
+            postService.save(post);
+
+        } else {
+            Post tempPost = postService.getById(post.getId());
+            Assert.isTrue(tempPost.getUserId().longValue() == getProfileId().longValue(), "无权限编辑此文章！");
+
+            tempPost.setTitle(post.getTitle());
+            tempPost.setContent(post.getContent());
+            tempPost.setCategoryId(post.getCategoryId());
+            postService.updateById(tempPost);
         }
         return Result.success().action("/post/" + post.getId());
     }

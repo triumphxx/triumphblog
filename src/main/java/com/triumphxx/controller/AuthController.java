@@ -6,7 +6,7 @@ import com.triumphxx.common.lang.Result;
 import com.triumphxx.entity.User;
 import com.triumphxx.util.ValidationUtil;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,7 +52,20 @@ public class AuthController extends BaseController {
     @ResponseBody
     public Result doLogin(String email,String password) {
         UsernamePasswordToken token = new UsernamePasswordToken(email, SecureUtil.md5(password));
-        SecurityUtils.getSubject().login(token);
+        try {
+            SecurityUtils.getSubject().login(token);
+
+        } catch (AuthenticationException e) {
+            if (e instanceof UnknownAccountException) {
+                return Result.fail("用户不存在");
+            } else if (e instanceof LockedAccountException) {
+                return Result.fail("用户被禁用");
+            } else if (e instanceof IncorrectCredentialsException) {
+                return Result.fail("密码错误");
+            } else {
+                return Result.fail("用户认证失败");
+            }
+        }
         return Result.success().action("/");
     }
 
