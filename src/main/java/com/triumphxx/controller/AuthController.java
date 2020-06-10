@@ -1,9 +1,12 @@
 package com.triumphxx.controller;
 
+import cn.hutool.crypto.SecureUtil;
 import com.google.code.kaptcha.Producer;
 import com.triumphxx.common.lang.Result;
 import com.triumphxx.entity.User;
 import com.triumphxx.util.ValidationUtil;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,9 +44,17 @@ public class AuthController extends BaseController {
 
     @GetMapping("/login")
     public String login() {
+
         return "/auth/login";
     }
 
+    @PostMapping("/login")
+    @ResponseBody
+    public Result doLogin(String email,String password) {
+        UsernamePasswordToken token = new UsernamePasswordToken(email, SecureUtil.md5(password));
+        SecurityUtils.getSubject().login(token);
+        return Result.success().action("/");
+    }
 
     @GetMapping("/register")
     public String register() {
@@ -78,7 +89,7 @@ public class AuthController extends BaseController {
 
     @RequestMapping("/user/logout")
     public String logout() {
-
+        SecurityUtils.getSubject().logout();
         return "redirect:/";
     }
 

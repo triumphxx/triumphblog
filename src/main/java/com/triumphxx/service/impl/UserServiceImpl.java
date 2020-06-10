@@ -1,5 +1,6 @@
 package com.triumphxx.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -7,6 +8,9 @@ import com.triumphxx.common.lang.Result;
 import com.triumphxx.entity.User;
 import com.triumphxx.mapper.UserMapper;
 import com.triumphxx.service.UserService;
+import com.triumphxx.shiro.AccountProfile;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -45,5 +49,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         this.save(temp);
         return Result.success();
+    }
+
+    @Override
+    public AccountProfile login(String email, String password) {
+        User user = this.getOne(new QueryWrapper<User>().eq("email", email));
+        if(user == null) {
+            throw new UnknownAccountException();
+        }
+        if(!user.getPassword().equals(password)){
+            throw new IncorrectCredentialsException();
+        }
+
+        user.setLasted(new Date());
+        this.updateById(user);
+
+        AccountProfile profile = new AccountProfile();
+        BeanUtil.copyProperties(user, profile);
+
+        return profile;
     }
 }

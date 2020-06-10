@@ -1,5 +1,6 @@
 package com.triumphxx.config;
 
+import com.jagregory.shiro.freemarker.ShiroTags;
 import com.triumphxx.template.HotsTemplate;
 import com.triumphxx.template.PostsTemplate;
 import com.triumphxx.template.TimeAgoMethod;
@@ -30,5 +31,6 @@ public class FreemarkerConfig {
         configuration.setSharedVariable("timeAgo", new TimeAgoMethod());
         configuration.setSharedVariable("posts", postsTemplate);
         configuration.setSharedVariable("hots", hotsTemplate);
+        configuration.setSharedVariable("shiro", new ShiroTags());
     }
 }
