@@ -1,8 +1,8 @@
 package com.triumphxx.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * <p>
@@ -12,8 +12,26 @@ import org.springframework.web.bind.annotation.RestController;
  * @author 公众号：北漂码农有话说
  * @since 2020-05-10
  */
-@RestController
-@RequestMapping("/user")
+@Controller
 public class UserController extends BaseController {
 
+    @GetMapping("user/set")
+    public String set(){
+        return "auth/set";
+    }
+
+    @GetMapping("user/home")
+    public String home(){
+        return "auth/home";
+    }
+
+    @GetMapping("user/index")
+    public String index(){
+        return "auth/index";
+    }
+
+    @GetMapping("user/message")
+    public String message(){
+        return "auth/message";
+    }
 }

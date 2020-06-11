@@ -46,6 +46,10 @@ public class ShiroConfig {
         hashMap.put("/res/**", "anon");
         hashMap.put("/post/edit", "auth");
         hashMap.put("/post/submit", "auth");
+        hashMap.put("/user/set", "auth");
+        hashMap.put("/user/home", "auth");
+        hashMap.put("/user/index", "auth");
+        hashMap.put("/user/message", "auth");
 
         hashMap.put("/login", "anon");
         filterFactoryBean.setFilterChainDefinitionMap(hashMap);
