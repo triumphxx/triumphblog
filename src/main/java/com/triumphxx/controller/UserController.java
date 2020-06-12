@@ -1,6 +1,7 @@
 package com.triumphxx.controller;
 
 
+import com.triumphxx.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -22,6 +23,9 @@ public class UserController extends BaseController {
 
     @GetMapping("user/home")
     public String home(){
+        User user = userService.getById(getProfileId());
+        req.setAttribute("user",user);
+
         return "auth/home";
     }
 
