@@ -4,7 +4,7 @@
 
 
 <div class="fly-home fly-panel" style="background-image: url();">
-  <img src="${user.avatar}" alt="贤心">
+  <img src="${user.avatar}" alt=" ${user.username}">
   <i class="iconfont icon-renzheng" title="Fly社区认证"></i>
   <h1>
     ${user.username}
@@ -21,7 +21,7 @@
 
   <p class="fly-home-info">
     <i class="iconfont icon-shijian"></i><span>${timeAgo(user.created)}</span>
-    <i class="iconfont icon-chengshi"></i><span>来自杭州</span>
+    <i class="iconfont icon-chengshi"></i><span>来自地球</span>
   </p>
 
   <p class="fly-home-sign">（${user.sign}）</p>
@@ -37,7 +37,7 @@
   <div class="layui-row layui-col-space15">
     <div class="layui-col-md6 fly-home-jie">
       <div class="fly-panel">
-        <h3 class="fly-panel-title">贤心 最近的提问</h3>
+        <h3 class="fly-panel-title">${user.username} 最近的提问</h3>
         <ul class="jie-row">
           <li>
             <span class="fly-jing">精</span>
