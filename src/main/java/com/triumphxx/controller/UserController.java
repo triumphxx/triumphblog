@@ -1,9 +1,13 @@
 package com.triumphxx.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.triumphxx.entity.Post;
 import com.triumphxx.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 /**
  * <p>
@@ -24,8 +28,12 @@ public class UserController extends BaseController {
     @GetMapping("user/home")
     public String home(){
         User user = userService.getById(getProfileId());
-        req.setAttribute("user",user);
 
+        List<Post> posts = postService.list(new QueryWrapper<Post>()
+                        .eq("user_id", getProfileId())
+                        .orderByDesc("created"));
+        req.setAttribute("user", user);
+        req.setAttribute("posts",posts);
         return "auth/home";
     }
 

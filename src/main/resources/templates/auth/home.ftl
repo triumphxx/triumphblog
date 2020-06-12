@@ -39,50 +39,21 @@
       <div class="fly-panel">
         <h3 class="fly-panel-title">${user.username} 最近的提问</h3>
         <ul class="jie-row">
-          <li>
-            <span class="fly-jing">精</span>
-            <a href="" class="jie-title"> 基于 layui 的极简社区页面模版</a>
-            <i>刚刚</i>
-            <em class="layui-hide-xs">1136阅/27答</em>
-          </li>
-          <li>
-            <a href="" class="jie-title"> 基于 layui 的极简社区页面模版</a>
-            <i>1天前</i>
-            <em class="layui-hide-xs">1136阅/27答</em>
-          </li>
-          <li>
-            <a href="" class="jie-title"> 基于 layui 的极简社区页面模版</a>
-            <i>2017-10-30</i>
-            <em class="layui-hide-xs">1136阅/27答</em>
-          </li>
-          <li>
-            <a href="" class="jie-title"> 基于 layui 的极简社区页面模版</a>
-            <i>1天前</i>
-            <em class="layui-hide-xs">1136阅/27答</em>
-          </li>
-          <li>
-            <a href="" class="jie-title"> 基于 layui 的极简社区页面模版</a>
-            <i>1天前</i>
-            <em class="layui-hide-xs">1136阅/27答</em>
-          </li>
-          <li>
-            <a href="" class="jie-title"> 基于 layui 的极简社区页面模版</a>
-            <i>1天前</i>
-            <em class="layui-hide-xs">1136阅/27答</em>
-          </li>
-          <li>
-            <a href="" class="jie-title"> 基于 layui 的极简社区页面模版</a>
-            <i>1天前</i>
-            <em class="layui-hide-xs">1136阅/27答</em>
-          </li>
-          <!-- <div class="fly-none" style="min-height: 50px; padding:30px 0; height:auto;"><i style="font-size:14px;">没有发表任何求解</i></div> -->
-        </ul>
+          <#list posts as post>
+              <li>
+                <#if post.recommend><span class="fly-jing">精</span></#if>
+                <a href="/post/${post.id}" class="jie-title">${post.title}</a>
+                <i>${timeAgo(post.cread)}</i>
+                <em class="layui-hide-xs">${post.viewCount}阅/${post.commentCount}答</em>
+              </li>
+          </#list>
+          </ul>
       </div>
     </div>
     
     <div class="layui-col-md6 fly-home-da">
       <div class="fly-panel">
-        <h3 class="fly-panel-title">贤心 最近的回答</h3>
+        <h3 class="fly-panel-title">${user.username} 最近的回答</h3>
         <ul class="home-jieda">
           <li>
           <p>
